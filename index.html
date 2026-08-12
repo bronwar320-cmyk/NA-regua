@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080808">
+  <title>Na Régua Barber Shop</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#inicio">✂ NA RÉGUA</a>
+    <nav>
+      <a href="#precos">Preços</a>
+      <a href="#horarios">Horários</a>
+      <a href="#agendar">Agendar</a>
+      <a href="#chat">Chat</a>
+      <a href="#painel">Painel</a>
+    </nav>
+  </header>
+
+  <!-- Abertura com as fotos enviadas. Só depois dela aparecem preços/agendamento/frase. -->
+  <section id="inicio" class="hero-gallery" aria-label="Trabalhos da Na Régua">
+    <div id="gallerySlides" class="gallery-slides"></div>
+    <div class="gallery-overlay">
+      <span class="eyebrow">NA RÉGUA BARBER SHOP</span>
+      <h1>ESTILO É<br><em>ATITUDE.</em></h1>
+      <p>Cuidado que transforma. Confiança que fica.</p>
+      <button class="primary" onclick="document.querySelector('#precos').scrollIntoView({behavior:'smooth'})">Conhecer a barbearia</button>
+    </div>
+    <div id="galleryDots" class="gallery-dots"></div>
+  </section>
+
+  <main>
+    <section id="precos" class="section">
+      <div class="section-head"><span>✂</span><h2>PREÇOS</h2></div>
+      <div class="price-grid">
+        <article><h3>SIMPLES</h3><p>Máquina zero <b>R$ 19,99</b></p><p>Shaver <b>R$ 14,99</b></p><p>Navalhado <b>R$ 19,99</b></p><p>Pezinho <b>R$ 14,99</b></p></article>
+        <article><h3>SOBRANCELHA</h3><p>A partir de <b>R$ 19,90</b></p></article>
+        <article><h3>PIGMENTAÇÃO</h3><p>A partir de <b>R$ 19,90</b></p></article>
+        <article><h3>BARBA</h3><p>Comum <b>R$ 24,90</b></p><p>Corte barba <b>R$ 19,90</b></p><p>Barboterapia <b>R$ 49,90</b></p></article>
+        <article class="wide"><h3>ARTE CORTE</h3><p>Tesoura completa <b>R$ 49,90</b></p><p>Degrade <b>R$ 39,90</b></p><p>Corte simples <b>R$ 29,90</b></p><p>Disfarçado + Tesoura <b>R$ 49,90</b></p></article>
+      </div>
+    </section>
+
+    <section id="horarios" class="section dark">
+      <div class="section-head"><span>🕰️</span><h2>HORÁRIOS</h2></div>
+      <div class="hours-card">
+        <p><strong>Segunda</strong><span>08:00–12:00 · 15:40–19:30</span></p>
+        <p><strong>Terça</strong><span>08:00–12:00 · 15:40–20:00</span></p>
+        <p><strong>Quarta</strong><span>08:00–12:00 · 15:40–20:00</span></p>
+        <p><strong>Quinta</strong><span>07:30–12:00 · 15:40–20:00</span></p>
+        <p><strong>Sexta</strong><span>07:00–12:00 · 15:40–20:00</span></p>
+        <p><strong>Sábado</strong><span>07:30–12:00 · 15:00–19:00</span></p>
+        <p><strong>Domingo</strong><span>Somente agendamento 📝</span></p>
+      </div>
+      <div class="limit">LIMITE DE AGENDAMENTOS <b>10 vagas por dia</b></div>
+    </section>
+
+    <section id="agendar" class="section">
+      <div class="section-head"><span>📅</span><h2>AGENDAMENTO</h2></div>
+      <p class="intro">Cada dia possui 10 vagas. Quando as 10 vagas forem preenchidas, o dia ficará indisponível. A semana seguinte começa com novas vagas.</p>
+      <form id="bookingForm" class="form-card">
+        <label>Nome *<input id="bookingName" required maxlength="80"></label>
+        <label>WhatsApp *<input id="bookingWhatsapp" required maxlength="30" placeholder="(00) 00000-0000"></label>
+        <label>E-mail<input id="bookingEmail" type="email" maxlength="120"></label>
+        <label>Corte *
+          <select id="bookingService" required>
+            <option value="">Selecione</option>
+            <option>Máquina zero</option><option>Shaver</option><option>Navalhado</option><option>Pezinho</option>
+            <option>Sobrancelha</option><option>Pigmentação</option><option>Barba comum</option><option>Corte barba</option>
+            <option>Barboterapia</option><option>Tesoura completa</option><option>Degrade</option><option>Corte simples</option><option>Disfarçado + Tesoura</option>
+          </select>
+        </label>
+        <label>Data *<input id="bookingDate" type="date" required></label>
+        <label>Horário *<select id="bookingTime" required><option value="">Selecione a data primeiro</option></select></label>
+        <div id="slotStatus" class="slot-status"></div>
+        <p class="notice">Domingo: agendamento mediante pagamento antecipado 📝</p>
+        <button class="primary" type="submit">Confirmar agendamento</button>
+      </form>
+    </section>
+
+    <section id="chat" class="section dark">
+      <div class="section-head"><span>💬</span><h2>CHAT</h2></div>
+      <p class="intro">Fale com a Na Régua. Deixe seu nome e sua mensagem.</p>
+      <div class="chat-card">
+        <div id="chatMessages" class="chat-messages"><div class="empty">Carregando conversa...</div></div>
+        <form id="chatForm" class="chat-form">
+          <input id="chatName" placeholder="Seu nome" required maxlength="60">
+          <input id="chatEmail" type="email" placeholder="Seu e-mail (opcional)" maxlength="120">
+          <textarea id="chatText" placeholder="Digite sua mensagem..." required maxlength="500"></textarea>
+          <button class="primary" type="submit">Enviar mensagem</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="painel" class="section owner-section">
+      <div class="section-head"><span>🔐</span><h2>PAINEL DO DONO</h2></div>
+      <div id="loginBox" class="form-card">
+        <p>Área exclusiva dos dois e-mails autorizados.</p>
+        <label>E-mail<input id="loginEmail" type="email" required autocomplete="username"></label>
+        <label>Senha<input id="loginPassword" type="password" required autocomplete="current-password"></label>
+        <button id="loginBtn" class="primary" type="button">Entrar</button>
+        <div id="loginMsg" class="form-msg"></div>
+      </div>
+
+      <div id="ownerPanel" class="owner-panel hidden">
+        <div class="owner-top">
+          <div><span class="eyebrow">PAINEL</span><h3>Agendamentos e chat</h3><p id="ownerEmailLabel"></p></div>
+          <button id="logoutBtn" class="secondary">Sair</button>
+        </div>
+        <div class="dashboard-grid">
+          <div class="dashboard-card"><span>Hoje</span><strong id="todayCount">0</strong><small>agendamentos</small></div>
+          <div class="dashboard-card"><span>Próximos</span><strong id="upcomingCount">0</strong><small>agendamentos</small></div>
+          <div class="dashboard-card"><span>Mensagens</span><strong id="chatCount">0</strong><small>no chat</small></div>
+        </div>
+        <div class="admin-block"><h4>Agendamentos</h4><div id="appointmentsTable" class="table-wrap"></div></div>
+        <div class="admin-block"><h4>Chat</h4><div id="adminChat" class="admin-chat"></div></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>© Na Régua Barber Shop · Estilo é atitude.</footer>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
